@@ -1,0 +1,256 @@
+{% extends "layout-static.html" %}
+
+{% block main %}
+<div class="centred-content" id="landing">
+    <div class="text">
+        <p class="summary-text">Student suburb locator</p>
+        <p class="featured-text">Find your best nest.</p>
+        <div class="description-text">
+            <p>Finding the ideal suburb to live in is a long and stressful process and takes a lot of research to make an informed choice. This can add a lot of unnecessary stress for university students during their studies.</p>
+            <p>Enter UniNest.</p>
+            <p>Put in your preferences for your ideal suburb and watch as we use Machine Learning trained on official Victorian suburb statistics to find and recommend the best suburb and community for you to live in.</p>
+        </div>
+        <div class="button-row">
+            <a href="#get-started-section" class="button bordered">Get started</a>
+            <a href="{{ url_for('data') }}" class="button featured">Learn more</a>
+        </div>
+    </div>
+    <div class="art">
+        <img src="{{ url_for('static', filename='imgs/LandingPage-Art.svg') }}" alt="isometric house art">
+    </div>
+</div>
+
+
+<div class="centred-content">
+    <div class="section-header">
+        <h2 class="title">Features</h2>
+        <p class="description">Explore what features makes UniNest so good.</p>
+    </div>
+
+    <div class="three-col">
+        <div class="card">
+            <div class="icon"><span class="bx bx-fingerprint"></span></div>
+            <div class="title">Personalised for you</div>
+            <div class="description">Use the extensive list of inputs to find the suburb which best fits your personalised needs.</div>
+        </div>
+        <div class="card">
+            <div class="icon"><span class="bx bx-map-alt"></span></div>
+            <div class="title">Interactive context</div>
+            <div class="description">See the recommended suburb on an interactive map so you can explore the surrounding area.</div>
+        </div>
+        <div class="card">
+            <div class="icon"><span class="bx bx-receipt"></span></div>
+            <div class="title">Justification</div>
+            <div class="description">See various statistics about the recommended suburb and why this suburb is a good fit for you.</div>
+        </div>
+        <div class="card">
+            <div class="icon"><span class="bx bx-target-lock"></span></div>
+            <div class="title">Accuracy</div>
+            <div class="description">Our model uses data from Official Government statistical sources. So you know the data can be trusted.</div>
+        </div>
+        <div class="card">
+            <div class="icon"><span class="bx bx-code"></span></div>
+            <div class="title">Continuously better</div>
+            <div class="description">We update our model periodically according to user feedback and improved data sources.</div>
+        </div>
+        <div class="card">
+            <div class="icon"><span class="bx bx-paint-roll"></span></div>
+            <div class="title">Modern design</div>
+            <div class="description">Our application is sleek and easy to use.</div>
+        </div>
+    </div>
+</div>
+
+<div id="get-started-section" class="centred-content">
+    <div class="section-header">
+        <h2 class="title">Get started</h2>
+        <p class="description">Enter your preferences and get a personalised recommendation for your new community.</p>
+    </div>
+
+    <div class="form-wrapper">
+        <!-- The preference input form -->
+        <form method="POST" action="/map">
+            {{ form.hidden_tag() }}
+
+            <div class="form-row">
+                <fieldset>
+                    <legend>Campus commute</legend>
+                    <div class="form-group">
+                        {{ form.com_prio.label(class="form-label") }}
+                        {{ form.com_prio(class="form-input") }}
+                    </div>
+                    <div id="university" class="form-group">
+                        {{ form.university.label(class="form-label") }}
+                        {{ form.university(class="form-input") }}
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Transport</legend>
+                    <div class="form-group">
+                        {{ form.tra_prio.label(class="form-label") }}
+                        {{ form.tra_prio(class="form-input") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.tra_train.label(class="form-label") }}
+                        {{ form.tra_train(class="form-input") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.tra_bus.label(class="form-label") }}
+                        {{ form.tra_bus(class="form-input") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.tra_tram.label(class="form-label") }}
+                        {{ form.tra_tram(class="form-input") }}
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Demographic</legend>
+                    <div class="form-group">
+                        {{ form.dem_prio.label(class="form-label") }}
+                        {{ form.dem_prio(class="form-input") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.dem_students_relative.label(class="form-label") }}
+                        {{ form.dem_students_relative(class="form-input") }}
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Accomodation</legend>
+                    <div class="form-group">
+                        {{ form.acc_prio.label(class="form-label") }}
+                        {{ form.acc_prio(class="form-input") }}
+                    </div>
+                    <div class="multi-group">
+                        <p class="requirements">You must select at least one of the following:</p>
+                        <div class="form-group">
+                            {{ form.house.label(class="form-label") }}
+                            {{ form.house(class="form-input") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.apt.label(class="form-label") }}
+                            {{ form.apt(class="form-input") }}
+                        </div>
+                        {% if form.house.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.house.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="multi-group">
+                        <p class="requirements">You must select at least one of the following:</p>
+                        <div class="form-group">
+                            {{ form.one_bed.label(class="form-label") }}
+                            {{ form.one_bed(class="form-input") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.two_bed.label(class="form-label") }}
+                            {{ form.two_bed(class="form-input") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.three_bed.label(class="form-label") }}
+                            {{ form.three_bed(class="form-input") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.fourplus_bed.label(class="form-label") }}
+                            {{ form.fourplus_bed(class="form-input")}}
+                        </div>
+                        {% if form.one_bed.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.one_bed.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.shared.label(class="form-label") }}
+                        {{ form.shared(class="form-input") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.rent.label(class="form-label") }}
+                        {{ form.rent(class="form-input") }}
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Environment</legend>
+                    <div class="form-group">
+                        {{ form.env_prio.label(class="form-label") }}
+                        {{ form.env_prio(class="form-input") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.env_retail.label(class="form-label") }}
+                        {{ form.env_retail(class="form-input") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.env_accomodation_food.label(class="form-label") }}
+                        {{ form.env_accomodation_food(class="form-input") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.env_public_admin.label(class="form-label") }}
+                        {{ form.env_public_admin(class="form-input") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.env_healthcare_social_assist.label(class="form-label") }}
+                        {{ form.env_healthcare_social_assist(class="form-input") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.env_arts_recreation.label(class="form-label") }}
+                        {{ form.env_arts_recreation(class="form-input") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.env_rental_hiring_realestate.label(class="form-label") }}
+                        {{ form.env_rental_hiring_realestate(class="form-input") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.env_parks.label(class="form-label") }}
+                        {{ form.env_parks(class="form-input") }}
+                    </div>
+                </fieldset>
+
+
+                <fieldset>
+                    <legend>Safety</legend>
+                    <div class="form-group">
+                        {{ form.saf_prio.label(class="form-label") }}
+                        {{ form.saf_prio(class="form-input") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.saf_crime_person.label(class="form-label") }}
+                        {{ form.saf_crime_person(class="form-input") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.saf_crime_property.label(class="form-label") }}
+                        {{ form.saf_crime_property(class="form-input") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.saf_drug_offences.label(class="form-label") }}
+                        {{ form.saf_drug_offences(class="form-input") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.saf_order_security.label(class="form-label") }}
+                        {{ form.saf_order_security(class="form-input") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.saf_justice_procedure.label(class="form-label") }}
+                        {{ form.saf_justice_procedure(class="form-input") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.saf_other.label(class="form-label") }}
+                        {{ form.saf_other(class="form-input") }}
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="button-row">
+                {{ form.submit(class="button prominent") }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

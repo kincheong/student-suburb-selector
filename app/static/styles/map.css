@@ -1,0 +1,179 @@
+
+@import url(layout.css);
+
+#map-main {
+    display: grid;
+    grid-template-columns: fit-content(100%) 3fr fit-content(100%);
+    height: calc(100vh - 72px);
+    overflow: hidden;
+    width: 100vw;
+}
+
+#input-section {
+    position: relative;
+    overflow-y: auto;
+    padding: 0 16px 16px 16px;
+    font-size: 14px;
+    width: 350px;
+}
+
+#output-section {
+    overflow-y: auto;
+    padding: 0 16px 16px 16px;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 350px;
+}
+
+#map-section {
+    display: grid;
+}
+
+#map {
+}
+
+/* #autocomplete-container {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    padding: 16px;
+}
+#autocomplete-container input {
+    background-color: rgba(240, 240, 240);
+    border-radius: 4px;
+    padding: 4px 8px;
+    width: 100%;
+    max-width: 256px;
+}
+#autocomplete-container input:focus {
+    box-shadow: var(--shadow-elevation-medium);
+}
+
+#map-controller {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    padding: 16px;
+} */
+
+
+form {
+    display: grid;
+}
+
+form .sticky-top {
+    background-color: var(--background-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    padding-bottom: 16px;
+}
+
+form .sticky-top .button {
+    width: 100%;
+}
+
+form .scroll-bottom {
+    height: 100%;
+    display: grid;
+    gap: 8px;
+}
+
+form hr {
+    border: 1px solid var(--palette-steel)
+}
+
+form .form-group {
+    margin-top: 4px;
+    display: grid;
+    grid-template-columns: 1fr fit-content(100%);
+}
+
+form summary {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px;
+    color: var(--palette-azure);
+    user-select: none;
+    cursor: pointer;
+}
+
+form summary .coll-arrow {
+    font-size: 24px;
+}
+
+form details[open] .bx-chevron-right {
+    transform: rotate(90deg);
+}
+
+.form-label {
+    font-weight: 500;
+}
+
+form summary::-webkit-details-marker {
+    display: none;
+}
+
+
+form .multi-group {
+    margin-block: 16px;
+    margin-left: 8px;
+    padding-left: 8px;
+    border-left: 2px solid rgb(245 245 245);
+}
+
+form p.requirements {
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: rgb(220 220 220)
+}
+
+
+
+
+#output-section .pre-title-text {
+    text-align: center;
+    font-weight: 300;
+}
+
+#output-section .title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 1.1;
+    margin-bottom: 6px;
+    color: var(--palette-azure);
+}
+
+#output-section .subtitle {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--palette-steel);
+}
+
+
+#output-section h2 {
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0.5em 0 0.5em;
+}
+
+#output-section p + h2 {
+    margin-top: 1.5em;
+}
+
+#output-section p {
+    font-size: 12px;
+}
+
+#output-section strong {
+    font-weight: bold;
+}

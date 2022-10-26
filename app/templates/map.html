@@ -1,0 +1,312 @@
+{% extends "layout.html" %}
+
+
+{% block head %}
+<script type="module" src="{{ url_for('static', filename='scripts/map.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/map.css') }}">
+{% endblock %}
+
+{% block header_class %}
+map-header
+{% endblock %}
+
+
+{% block content %}
+<main class="main" id="map-main">
+    <!-- Container for the input section -->
+    <div id="input-section">
+        <!-- The preference input form -->
+        <form method="POST" action="/map">
+            {{ form.hidden_tag() }}
+
+            <div class="sticky-top">
+                {{ form.submit(class="button prominent") }}
+            </div>
+
+            <div class="scroll-bottom">
+                <fieldset>
+                    <details open>
+                        <summary>
+                            <span class="coll-arrow bx bx-chevron-right"></span>
+                            <legend>Campus commute</legend>
+                        </summary>
+                        <div class="form-group">
+                            {{ form.com_prio.label(class="form-label") }}
+                            {{ form.com_prio(class="form-input") }}
+                        </div>
+                        <div id="university" class="form-group">
+                            {{ form.university.label(class="form-label") }}
+                            {{ form.university(class="form-input") }}
+                        </div>
+                    </details>
+                </fieldset>
+                <hr>
+                
+                <fieldset>
+                    <details open>
+                        <summary>
+                            <span class="coll-arrow bx bx-chevron-right"></span>
+                            <legend>Accomodation</legend>
+                        </summary>
+                        <div class="form-group">
+                            {{ form.acc_prio.label(class="form-label") }}
+                            {{ form.acc_prio(class="form-input") }}
+                        </div>
+                        <div class="multi-group">
+                            <p class="requirements">You must select at least one of the following:</p>
+                            <div class="form-group">
+                                {{ form.house.label(class="form-label") }}
+                                {{ form.house(class="form-input") }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.apt.label(class="form-label") }}
+                                {{ form.apt(class="form-input") }}
+                            </div>
+                            {% if form.house.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.house.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="multi-group">
+                            <p class="requirements">You must select at least one of the following:</p>
+                            <div class="form-group">
+                                {{ form.one_bed.label(class="form-label") }}
+                                {{ form.one_bed(class="form-input") }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.two_bed.label(class="form-label") }}
+                                {{ form.two_bed(class="form-input") }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.three_bed.label(class="form-label") }}
+                                {{ form.three_bed(class="form-input") }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.fourplus_bed.label(class="form-label") }}
+                                {{ form.fourplus_bed(class="form-input")}}
+                            </div>
+                            {% if form.one_bed.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.one_bed.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.shared.label(class="form-label") }}
+                            {{ form.shared(class="form-input") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.rent.label(class="form-label") }}
+                            {{ form.rent(class="form-input") }}
+                        </div>
+                    </details>
+                </fieldset>
+                <hr>
+                
+                <fieldset>
+                    <details>
+                        <summary>
+                            <span class="coll-arrow bx bx-chevron-right"></span>
+                            <legend>Environment</legend>
+                        </summary>
+                        <div class="form-group">
+                            {{ form.env_prio.label(class="form-label") }}
+                            {{ form.env_prio(class="form-input") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.env_retail.label(class="form-label") }}
+                            {{ form.env_retail(class="form-input") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.env_accomodation_food.label(class="form-label") }}
+                            {{ form.env_accomodation_food(class="form-input") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.env_public_admin.label(class="form-label") }}
+                            {{ form.env_public_admin(class="form-input") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.env_healthcare_social_assist.label(class="form-label") }}
+                            {{ form.env_healthcare_social_assist(class="form-input") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.env_arts_recreation.label(class="form-label") }}
+                            {{ form.env_arts_recreation(class="form-input") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.env_rental_hiring_realestate.label(class="form-label") }}
+                            {{ form.env_rental_hiring_realestate(class="form-input") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.env_parks.label(class="form-label") }}
+                            {{ form.env_parks(class="form-input") }}
+                        </div>
+                    </details>
+                </fieldset>
+                <hr>
+                
+                <fieldset>
+                    <details>
+                        <summary>
+                            <span class="coll-arrow bx bx-chevron-right"></span>
+                            <legend>Transport</legend>
+                        </summary>
+                        <div class="form-group">
+                            {{ form.tra_prio.label(class="form-label") }}
+                            {{ form.tra_prio(class="form-input") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.tra_train.label(class="form-label") }}
+                            {{ form.tra_train(class="form-input") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.tra_bus.label(class="form-label") }}
+                            {{ form.tra_bus(class="form-input") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.tra_tram.label(class="form-label") }}
+                            {{ form.tra_tram(class="form-input") }}
+                        </div>
+                    </details>
+                </fieldset>
+                <hr>
+                
+                <fieldset>
+                    <details>
+                        <summary>
+                            <span class="coll-arrow bx bx-chevron-right"></span>
+                            <legend>Safety</legend>
+                        </summary>
+                        <div class="form-group">
+                            {{ form.saf_prio.label(class="form-label") }}
+                            {{ form.saf_prio(class="form-input") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.saf_crime_person.label(class="form-label") }}
+                            {{ form.saf_crime_person(class="form-input") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.saf_crime_property.label(class="form-label") }}
+                            {{ form.saf_crime_property(class="form-input") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.saf_drug_offences.label(class="form-label") }}
+                            {{ form.saf_drug_offences(class="form-input") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.saf_order_security.label(class="form-label") }}
+                            {{ form.saf_order_security(class="form-input") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.saf_justice_procedure.label(class="form-label") }}
+                            {{ form.saf_justice_procedure(class="form-input") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.saf_other.label(class="form-label") }}
+                            {{ form.saf_other(class="form-input") }}
+                        </div>
+                    </details>
+                </fieldset>
+                <hr>
+                
+                <fieldset>
+                    <details>
+                        <summary>
+                            <span class="coll-arrow bx bx-chevron-right"></span>
+                            <legend>Demographic</legend>
+                        </summary>
+                        <div class="form-group">
+                            {{ form.dem_prio.label(class="form-label") }}
+                            {{ form.dem_prio(class="form-input") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.dem_students_relative.label(class="form-label") }}
+                            {{ form.dem_students_relative(class="form-input") }}
+                        </div>
+                    </details>
+                </fieldset>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Container for the Google Map and related elements -->
+    <div id="map-section">
+        <!-- the Map itself -->
+        <div id="map"></div>
+    
+        <!-- Container for Autocomplete (Search Box) -->
+        <!-- <div id="autocomplete-container">
+            <input id="autocomplete">
+        </div> -->
+    
+        <!-- Container for elements controlling/related to the map -->
+        <!-- <div id="map-controller">
+            <p>placeholder text</p>
+        </div> -->
+    </div>
+    
+    <!-- Container for the output section -->
+    {% if details is not none %}
+    <div id="output-section">
+        <div class="output-group">
+            <div class="pre-title-text">
+                Your best suburb is...
+            </div>
+            <p id="suburb-name" class="title">
+                {{ details.name }}!
+            </p>
+            <p class="subtitle">
+                {{ details.name }} {{ details.postcode }} • {{ details.lga }}
+            </p>
+        </div>
+
+        <div class="output-group">
+            <h2>Demographics</h2>
+            {% if details.population is not none %}
+                <p><strong>Population:</strong> {{ details.population }} people</p>
+            {% endif %}
+            
+            {% if details.median_age is not none %}
+                <p><strong>Median age:</strong> {{ details.median_age }} years</p>
+            {% endif %}
+            
+            {% if details.avg_household_size is not none %}
+                <p><strong>Average houshold size:</strong> {{ details.avg_household_size }} persons</p>
+            {% endif %}
+            
+            {% if details.num_uni_students is not none %}
+                <p><strong>Number of university students:</strong> {{ details.num_uni_students }} people</p>
+            {% endif %}
+            
+            
+            <h2>Accomodation</h2>
+            {% if details.median_weekly_rent is not none %}
+                <p><strong>Median weekly rent:</strong> ${{ details.median_weekly_rent }}</p>
+            {% endif %}
+
+            {% if details.num_houses is not none %}
+                <p><strong>Number of houses:</strong> {{ details.num_houses }}</p>
+            {% endif %}
+
+            {% if details.num_apartments is not none %}
+                <p><strong>Number of apartments:</strong> {{ details.num_apartments }}</p>
+            {% endif %}
+
+            {% if details.num_shared is not none %}
+                <p><strong>Number of shared households:</strong> {{ details.num_shared }}</p>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+</main>
+
+<!-- Load the Map JS API AFTER the map^ has been loaded -->
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATvJHNK8Yi7ieceimsXi8N2iZ1oN5AapU&libraries=places&callback=initMap&language=en"
+    defer></script>
+{% endblock %}

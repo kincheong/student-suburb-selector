@@ -1,0 +1,264 @@
+
+@import url(layout.css);
+
+.centred-content {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 1000px;
+}
+
+#landing {
+    min-height: calc(100vh - 72px);
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 32px;
+}
+
+@media (max-width:700px) {
+    #landing {
+        height: auto;
+        grid-template-columns: 1fr;
+        grid-template-rows: fit-content(100%) fit-content(100%);
+    }
+    #landing .text {
+        grid-row: 2;
+    }
+    #landing .art {
+        grid-row: 1;
+    }
+    #landing .art img {
+        max-width: 350px;
+    }
+}
+
+#landing .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#landing .featured-text {
+    font-size: 44px;
+    font-weight: 700;
+    color: var(--palette-azure);
+    margin-bottom: 24px;
+    line-height: 1;
+}
+
+#landing .summary-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--palette-steel);
+}
+
+#landing .description-text {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#landing .button-row {
+    display: flex;
+    gap: 16px;
+    margin: 24px 0;
+}
+
+#landing .art {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#landing .art img {
+    width: 100%;
+}
+
+
+.section-header {
+    text-align: center;
+    margin: 40px 0 30px;
+}
+
+.section-header .title {
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--palette-azure);
+}
+
+.section-header .description {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--palette-steel);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+
+.three-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 64px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+}
+
+.card .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 52px;
+    color: var(--palette-azure);
+}
+
+.card .title {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.card .description {
+    font-size: 14px;
+}
+
+
+
+
+
+#get-started-section {
+    margin-top: 128px;
+}
+
+
+
+
+
+
+
+.privacy-section h1,
+.data-section h1,
+.terms-section h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 1em 0 0.5em;
+}
+
+.privacy-section h2,
+.data-section h2,
+.terms-section h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 1em 0 0.5em;
+}
+
+.privacy-section h3,
+.data-section h3,
+.terms-section h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 1em 0 0.5em;
+}
+
+.privacy-section p,
+.data-section p,
+.terms-section p,
+.privacy-section li,
+.data-section li,
+.terms-section li {
+    font-size: 14px;
+    margin: 0.8em 0;
+}
+
+.privacy-section ul,
+.data-section ul,
+.terms-section ul {
+    margin-left: 2em;
+}
+
+.privacy-section strong,
+.data-section strong,
+.terms-section strong {
+    font-weight: bold;
+}
+
+.privacy-section a,
+.data-section a,
+.terms-section a {
+    color: var(--palette-azure);
+}
+
+.privacy-section .updated-text,
+.data-section .updated-text,
+.terms-section .updated-text {
+    text-align: center;
+    margin-block: 2em;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+
+
+
+
+
+.news-section .news-card {
+    position: relative;
+    border-left: 4px solid var(--palette-azure);
+    margin-left: 2em;
+    padding-left: 2em;
+    padding-block: 1em;
+}
+
+.news-section .news-title {
+    color: var(--palette-azure);
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.news-section .news-meta {
+    margin-bottom: 1em;
+    color: var(--palette-steel);
+    font-weight: 600;
+}
+
+.news-card::before {
+    content: "";
+    height: 1em;
+    width: 1em;
+    position: absolute;
+    left: -0.9em;
+    top: 1.2em;
+    display: block;
+    background-color: white;
+    border: 4px solid var(--palette-azure);
+    border-radius: 16px;
+}
+
+
+
+
+.help-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 64px;
+    margin-inline: 64px;
+}
+
+.help-card {
+    padding: 16px 24px;
+    border: 2px solid rgb(250 250 250);
+    border-radius: 8px;
+}
+
+.help-title {
+    color: var(--palette-azure);
+    margin-bottom: 0.5em;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+

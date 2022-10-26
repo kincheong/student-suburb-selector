@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/static.css') }}">
+{% endblock %}
+
+
+{% block content %}
+    <main class="main" id="static-main">
+    {% block main %}{% endblock %}
+    </main>
+
+    <footer class="footer" id="footer">
+        <div id="footer-content">
+            <div id="footer-copy">
+                Copyright &copy; <span id="copyright-year"></span> UniNest contributers
+            </div>
+            <nav id="footer-nav" class="nav">
+                <a class="nav-link" href="{{ url_for('privacy') }}">Privacy Policy</a>
+                <a class="nav-link" href="{{ url_for('terms') }}">Terms & Conditions</a>
+                <a class="nav-link" href="{{ url_for('help') }}">Help</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("copyright-year").innerHTML = new Date().getFullYear();
+    </script>
+{% endblock %}

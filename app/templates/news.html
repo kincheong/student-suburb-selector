@@ -1,0 +1,29 @@
+{% extends "layout-static.html" %}
+
+{% block main %}
+<div class="centred-content news-section">
+    <div class="section-header">
+        <h2 class="title">News</h2>
+        <p class="description">Find out what's new with UniNest.</p>
+    </div>
+
+    <article class="news-card">
+        <h3 class="news-title">Model updated</h3>
+        <p class="news-meta">Posted 2022-10-18 by UniNest Contributers</p>
+        <div class="news-body">
+            <p class="news-paragraph">
+                The Machine Learning Model has been updated internally using a new method for generating the training dataset which should hopefully produce more accurate results. Try it out and let us know what you think!
+            </p>
+        </div>
+    </article>
+    <article class="news-card">
+        <h3 class="news-title">UniNest released</h3>
+        <p class="news-meta">Posted 2022-10-03 by UniNest Contributers</p>
+        <div class="news-body">
+            <p class="news-paragraph">
+                The UniNest application has finally been released! Some features are still being ironed out and improvements to the Machine Learning Model will continue to be made. But in the mean-time, we hope you find the app useful!
+            </p>
+        </div>
+    </article>
+</div>
+{% endblock %}

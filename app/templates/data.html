@@ -1,0 +1,50 @@
+{% extends "layout-static.html" %}
+
+
+{% block main %}
+<div class="centred-content data-section">
+    <div class="section-header">
+        <h2 class="title">Data</h2>
+        <p class="description">See where the data for our machine learning model comes from and how we process it.</p>
+    </div>
+
+    <p class="updated-text">Last updated: October 19, 2022</p>
+
+    <h1>Data sources</h1>
+
+    <p>Our data comes from three sources; these are offical government statistics which demonstrates their accuracy and completeness.</p>
+    <ul>
+        <li>
+            <h3>Suburb and locality census data</h3>
+            <p class="author">Australian Bureau of Statistics at <a href="https://dbr.abs.gov.au/index.html">https://dbr.abs.gov.au/index.html</a></p>
+            <p>This dataset contains over 10,000 statistical attributes for every suburb and locality in Victoria.</p>
+        </li>
+        <li>
+            <h3>Regional profiles</h3>
+            <p class="author">Victorian Government at <a href="https://discover.data.vic.gov.au/dataset/2015-local-government-area-profiles">https://discover.data.vic.gov.au/dataset/2015-local-government-area-profiles</a></p>
+            <p>This dataset contains many features about each Local Government Area in Victoria.</p>
+        </li>
+        <li>
+            <h3>Crime statistics</h3>
+            <p class="author">Victoria Police at <a href="https://www.crimestatistics.vic.gov.au/crime-statistics/download-crime-data">https://www.crimestatistics.vic.gov.au/crime-statistics/download-crime-data</a></p>
+            <p>This dataset contains characteristics of crime recorded by Victoria Police in the Law Enforcement Assistance Program (LEAP) for each suburb and locality.</p>
+        </li>
+    </ul>
+
+    <h1>Data processing</h1>
+
+    <p>We used standard statistical analysis techniques with Python and the Pandas library to prepare our data for developing our machine learning model.</p>
+
+    <p>This included removing much of the unnecessary data; with over 10,000 features for each suburb, many of the features were unrelated to the goal of this application.</p>
+
+    <h1>Machine Learning</h1>
+
+    <p>Our machine learning model makes use of a generated dataset. This was necessary due to the lack of existing data about people's preferred suburb in Victoria based on their accomodation preferences.</p>
+
+    <p>With this dataset, we trained a Decision Tree model which gets used with your inputted preferences to recommend to you your ideal suburb.</p>
+</div>
+{% endblock %}
+
+
+
+
