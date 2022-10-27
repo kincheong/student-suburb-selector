@@ -15,7 +15,7 @@
 
 FIT3163/FIT3164 Data Science Group Project (2022)
 
-A Flask web application that recommends a suburb for students to live in around universities or schools in Victoria, Melbourne, based on their budget, commute to university, environment, public transport availability, crime rates, and population demographic in the suburbs.
+A Flask web application that recommends a suburb in Victoria, Australia for students to live in based on their budget, commute to university, environment, public transport availability, crime rates, and population demographic in the suburb.
 
 ## Description
 
